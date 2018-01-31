@@ -9,6 +9,15 @@ function makeButtonNum(newButton, index, val){
   return newButton;
 }
 
+function makeOperatorButton(newButton, index, operator){
+  newButton = operators[index];
+  newButton.addEventListener('click',handleClick);
+  function handleClick(){
+    line += operator;
+    console.log(line);
+  }
+}
+
 function clearLine(){
   console.log('ClearLineClicked');
   line = '';
@@ -30,4 +39,11 @@ var button2 = makeButtonNum(button2,7,2);
 var button3 = makeButtonNum(button3,8,3);
 //Add AC Button
 var buttonAC=document.getElementsByClassName('buttonClear')[0];
+//Add Operator buttons
+operators = document.getElementsByClassName('operator');
+var buttonMul = makeOperatorButton(buttonMul,0,'*');
+var buttonDiv = makeOperatorButton(buttonDiv,1,'/');
+var buttonSub = makeOperatorButton(buttonSub,2,'-');
+var buttonAdd = makeOperatorButton(buttonAdd,3,'+');
+console.log(operators);
 buttonAC.addEventListener('click',clearLine);
