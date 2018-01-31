@@ -38,27 +38,29 @@ function equalsLine(){
   runningTotal = parseInt(arrayNumbers[0]);
   arrayNumbers.shift();
   //get out next int ready, and shift that from numbers array
-  var nextInt = parseInt(arrayNumbers[0]);
-  arrayNumbers.shift();
-  //use case select to find out what the operator was
-  var nextOperator = arrayOperators[0];
-  arrayOperators.shift();
-  switch (nextOperator) {
-    case '+':
-      runningTotal = runningTotal + nextInt;
-      break;
-    case '-':
-      runningTotal = runningTotal - nextInt;
-      break;
-    case '*':
-      runningTotal = runningTotal * nextInt;
-      break;
-    case '/':
-      runningTotal = runningTotal / nextInt;
-      break;
-    default:
-      throw 'InvalidInputErrpr'
-  }
+  do{
+    var nextInt = parseInt(arrayNumbers[0]);
+    arrayNumbers.shift();
+    //use case select to find out what the operator was
+    var nextOperator = arrayOperators[0];
+    arrayOperators.shift();
+    switch (nextOperator) {
+      case '+':
+        runningTotal = runningTotal + nextInt;
+        break;
+      case '-':
+        runningTotal = runningTotal - nextInt;
+        break;
+      case '*':
+        runningTotal = runningTotal * nextInt;
+        break;
+      case '/':
+        runningTotal = runningTotal / nextInt;
+        break;
+      default:
+        throw 'InvalidInputErrpr'
+    }
+  }while(arrayNumbers.length>0);
   //reset the line
   line = ''
   //resolves the maths
