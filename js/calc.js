@@ -25,6 +25,47 @@ function clearLine(){
 
 function equalsLine(){
   console.log('Equals clicked');
+  //keep a runnign total
+  var runningTotal=0;
+  //Split the line into an array whenever it reads an operator, use a regex for this
+  //((/[*/+-]/) gives numbers
+  arrayNumbers = line.split(/[*/+-]/);
+  ///[^*/%+-]/) gives operators and "" at each end. pop and shift to remove
+  arrayOperators = line.split(/[^*/%+-]/);
+  arrayOperators.shift();
+  arrayOperators.pop();
+  //convert split[0] to number, set it as running total, and shift
+  runningTotal = parseInt(arrayNumbers[0]);
+  arrayNumbers.shift();
+  //get out next int ready, and shift that from numbers array
+  var nextInt = parseInt(arrayNumbers[0]);
+  arrayNumbers.shift();
+  //use case select to find out what the operator was
+  var nextOperator = arrayOperators[0];
+  arrayOperators.shift();
+  switch (nextOperator) {
+    case '+':
+      runningTotal = runningTotal + nextInt;
+      break;
+    case '-':
+      runningTotal = runningTotal - nextInt;
+      break;
+    case '*':
+      runningTotal = runningTotal * nextInt;
+      break;
+    case '/':
+      runningTotal = runningTotal / nextInt;
+      break;
+    default:
+      throw 'InvalidInputErrpr'
+  }
+  //reset the line
+  line = ''
+  //resolves the maths
+  //return runningTotal
+  console.log(arrayNumbers);
+  console.log(arrayOperators);
+  console.log(runningTotal);
 }
 
 //PROGRAM START
