@@ -4,6 +4,7 @@ function makeButtonNum(newButton, index, val){
   newButton.addEventListener('click',handleClick);
   function handleClick(){
     line += val.toString();
+    changeDisplay(line);
   }
   return newButton;
 }
@@ -13,11 +14,13 @@ function makeOperatorButton(newButton, index, operator){
   newButton.addEventListener('click',handleClick);
   function handleClick(){
     line += operator;
+    changeDisplay(line);
   }
 }
 
 function clearLine(){
   line = '';
+  changeDisplay(line);
 }
 
 function equalsLine(){
@@ -62,14 +65,11 @@ function equalsLine(){
   //reset the line
   line = ''
   //resolves the maths
-  changeDisplay(runningTotal);
-  console.log(arrayNumbers);
-  console.log(arrayOperators);
-  console.log(runningTotal);
+  changeDisplay(runningTotal.toString());
 }
 
 function changeDisplay(newInput){
-  display.innerHTML = newInput.toString();
+  display.innerHTML = newInput;
 }
 
 //PROGRAM START
