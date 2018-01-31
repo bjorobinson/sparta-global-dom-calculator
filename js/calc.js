@@ -4,7 +4,6 @@ function makeButtonNum(newButton, index, val){
   newButton.addEventListener('click',handleClick);
   function handleClick(){
     line += val.toString();
-    console.log(line);
   }
   return newButton;
 }
@@ -14,24 +13,22 @@ function makeOperatorButton(newButton, index, operator){
   newButton.addEventListener('click',handleClick);
   function handleClick(){
     line += operator;
-    console.log(line);
   }
 }
 
 function clearLine(){
-  console.log('ClearLineClicked');
   line = '';
 }
 
 function equalsLine(){
-  console.log('Equals clicked');
   //keep a runnign total
   var runningTotal=0;
   //Split the line into an array whenever it reads an operator, use a regex for this
+  var linecopy = line;
   //((/[*/+-]/) gives numbers
   arrayNumbers = line.split(/[*/+-]/);
   ///[^*/%+-]/) gives operators and "" at each end. pop and shift to remove
-  arrayOperators = line.split(/[^*/%+-]/);
+  arrayOperators = linecopy.split(/[^*/%+-]+/);
   arrayOperators.shift();
   arrayOperators.pop();
   //convert split[0] to number, set it as running total, and shift
@@ -58,16 +55,21 @@ function equalsLine(){
         runningTotal = runningTotal / nextInt;
         break;
       default:
-        throw 'InvalidInputErrpr'
+        alert('Invalid input!')
+        throw 'InvalidInputError'
     }
   }while(arrayNumbers.length>0);
   //reset the line
   line = ''
   //resolves the maths
-  //return runningTotal
+  changeDisplay(runningTotal);
   console.log(arrayNumbers);
   console.log(arrayOperators);
   console.log(runningTotal);
+}
+
+function changeDisplay(newInput){
+  display.innerHTML = newInput.toString();
 }
 
 //PROGRAM START
@@ -96,3 +98,5 @@ var buttonAdd = makeOperatorButton(buttonAdd,3,'+');
 //Add Equals button
 var buttonEquals=document.getElementsByClassName('equals')[0];
 buttonEquals.addEventListener('click',equalsLine);
+//Make display an object and can change it to given arguement
+var display=document.getElementById('screen');
