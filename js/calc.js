@@ -23,6 +23,10 @@ function clearLine(){
   line = '';
 }
 
+function equalsLine(){
+  console.log('Equals clicked');
+}
+
 //PROGRAM START
 var line = '';
 var display = document.getElementById('container')
@@ -39,11 +43,13 @@ var button2 = makeButtonNum(button2,7,2);
 var button3 = makeButtonNum(button3,8,3);
 //Add AC Button
 var buttonAC=document.getElementsByClassName('buttonClear')[0];
+buttonAC.addEventListener('click',clearLine);
 //Add Operator buttons
 operators = document.getElementsByClassName('operator');
 var buttonMul = makeOperatorButton(buttonMul,0,'*');
 var buttonDiv = makeOperatorButton(buttonDiv,1,'/');
 var buttonSub = makeOperatorButton(buttonSub,2,'-');
 var buttonAdd = makeOperatorButton(buttonAdd,3,'+');
-console.log(operators);
-buttonAC.addEventListener('click',clearLine);
+//Add Equals button
+var buttonEquals=document.getElementsByClassName('equals')[0];
+buttonEquals.addEventListener('click',equalsLine);
